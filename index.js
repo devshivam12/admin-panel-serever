@@ -6,7 +6,10 @@ import clientRoute from './routes/client.route.js'
 import managementRoute from './routes/management.route.js'
 import salesRoute from './routes/sales.route.js'
 import generalRoute from './routes/general.route.js'
-
+import User from './model/User.js'
+import { dataProduct, dataProductStat, dataUser } from './data/index.js'
+import Product from './model/Product.js'
+import ProductStat from './model/ProductStats.js'
 dotenv.config()
 
 const app = express()
@@ -38,6 +41,12 @@ mongoose.connect("mongodb://127.0.0.1:27017/admin-panel")
 
         app.listen(port, (req, res) => {
             console.log(`Server is running at the ${port}`)
+
+            // User.insertMany(dataUser)
+
+            // Product.insertMany(dataProduct)
+
+            // ProductStat.insertMany(dataProductStat)
         })
     }).catch((error) => {
         console.log(error)
