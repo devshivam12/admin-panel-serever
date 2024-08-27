@@ -6,11 +6,13 @@ import clientRoute from './routes/client.route.js'
 import managementRoute from './routes/management.route.js'
 import salesRoute from './routes/sales.route.js'
 import generalRoute from './routes/general.route.js'
+import OverallStat from './model/OverviewStats.js'
 import User from './model/User.js'
-import { dataProduct, dataProductStat, dataTransaction, dataUser } from './data/index.js'
+import { dataOverallStat, dataProduct, dataProductStat, dataTransaction, dataUser } from './data/index.js'
 import Product from './model/Product.js'
 import ProductStat from './model/ProductStats.js'
 import Transactions from './model/Transactions.js'
+
 
 
 dotenv.config()
@@ -52,6 +54,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/admin-panel")
             // ProductStat.insertMany(dataProductStat)
 
             // Transactions.insertMany(dataTransaction)
+
+            // OverallStat.insertMany(dataOverallStat)
         })
     }).catch((error) => {
         console.log(error)

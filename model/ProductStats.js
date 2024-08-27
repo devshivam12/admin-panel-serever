@@ -13,11 +13,11 @@ const ProductSchema = new mongoose.Schema(
                 totalUnits : Number
             }
         ],
-        dailtData : {
+        dailtData : [{
             data : String,
             totalSales : Number,
             totalUnits : Number
-        }
+        }]
     },
     {
         timestamps : true

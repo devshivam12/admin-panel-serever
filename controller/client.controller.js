@@ -2,6 +2,8 @@ import Product from "../model/Product.js"
 import ProductStat from "../model/ProductStats.js"
 import Transactions from "../model/Transactions.js"
 import User from '../model/User.js'
+import getCountryIso3 from 'country-iso-2-to-3'
+
 
 export const getProducts = async (req, res) => {
   try {
@@ -66,11 +68,13 @@ export const getTransactions = async (req, res) => {
       $or: [
         { cost: { $regex: new RegExp(search, "i") } },
         { userId: { $regex: new RegExp(search, "i") } },
-        { products : {
-          $elemMatch : {
-            name :{$regex: new RegExp(search, "i")}
+        {
+          products: {
+            $elemMatch: {
+              name: { $regex: new RegExp(search, "i") }
+            }
           }
-        }}
+        }
       ],
     }
 
@@ -101,3 +105,28 @@ export const getTransactions = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+
+export const getLocations = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    const mappedLocations = users.reduce((acc, { country }) => {
+      const countryIso = getCountryIso3(country)
+      if (!acc[countryIso]) {
+        acc[countryIso] = 0;
+      }
+      acc[countryIso]++
+
+      return acc;
+    }, {})
+
+    const formattedLocations = Object.entries(mappedLocations).map(([country, count]) => {
+      return {id : country, value : count}
+    })
+
+    res.status(200).json({success : true, formattedLocations})
+  } catch (error) {
+    res.status(404).json({ messages: error.message })
+  }
+}
