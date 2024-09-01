@@ -8,10 +8,11 @@ import salesRoute from './routes/sales.route.js'
 import generalRoute from './routes/general.route.js'
 import OverallStat from './model/OverviewStats.js'
 import User from './model/User.js'
-import { dataOverallStat, dataProduct, dataProductStat, dataTransaction, dataUser } from './data/index.js'
+import { dataAffiliateStat, dataOverallStat, dataProduct, dataProductStat, dataTransaction, dataUser } from './data/index.js'
 import Product from './model/Product.js'
 import ProductStat from './model/ProductStats.js'
 import Transactions from './model/Transactions.js'
+import AffiliateStat from './model/AffiliateStat.js'
 
 
 
@@ -56,6 +57,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/admin-panel")
             // Transactions.insertMany(dataTransaction)
 
             // OverallStat.insertMany(dataOverallStat)
+
+            // AffiliateStat.insertMany(dataAffiliateStat)
         })
     }).catch((error) => {
         console.log(error)
