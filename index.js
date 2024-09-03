@@ -19,7 +19,7 @@ import AffiliateStat from './model/AffiliateStat.js'
 dotenv.config()
 
 const app = express()
-
+const MONGO_URL = process.env.MONGO_URL
 const corsOrigin = {
     origin: process.env.FRONTEND_URL
 }
@@ -41,7 +41,7 @@ app.use('/general', generalRoute)
 app.use('/management', managementRoute)
 app.use('/sales', salesRoute)
 
-mongoose.connect("mongodb://127.0.0.1:27017/admin-panel")
+mongoose.connect(MONGO_URL)
     .then(() => {
         console.log("Database is connected")
 
