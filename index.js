@@ -32,7 +32,7 @@ app.use(cors(corsOrigin))
 
 // connections
 
-const port = process.env.PORT || 9000;
+const port = process.env.PORT
 
 // Routes 
 
@@ -45,7 +45,7 @@ mongoose.connect(MONGO_URL)
     .then(() => {
         console.log("Database is connected")
 
-        app.listen(port, (req, res) => {
+        app.listen(port, () => {
             console.log(`Server is running at the ${port}`)
 
             // User.insertMany(dataUser)
