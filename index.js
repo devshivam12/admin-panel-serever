@@ -32,7 +32,7 @@ app.use(cors(corsOrigin))
 
 // connections
 
-const port = process.env.PORT
+const port = process.env.PORT || 5001
 
 // Routes 
 
