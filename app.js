@@ -21,7 +21,13 @@ dotenv.config()
 const app = express()
 const MONGO_URL = process.env.MONGO_URL
 const corsOrigin = {
-    origin: process.env.FRONTEND_URL
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:4173",
+        process.env.DEPLOYED_URL,
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 }
 
 // middleware
